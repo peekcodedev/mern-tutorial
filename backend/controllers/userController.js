@@ -31,7 +31,7 @@ const registerUser = asyncHandler(async(req, res) => {
     const user = await User.create({
         name,
         email,
-        password: hashedPassword
+        password: hashedPassword,
     })
 
     if(user) {
@@ -74,20 +74,20 @@ const loginUser = asyncHandler(async(req, res) => {
 
 // @desc    Get user data
 // @route   GET /api/users
-// @access  Public
+// @access  Private
 const getMe = asyncHandler(async(req, res) => {
     res.json({ message: 'User data display'})
 })
 
 
 
-// Generate JWT
 
+// Generate JWT
 const generateToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET, {
-        expiresIn: '30d',
+      expiresIn: '30d',
     })
-}
+  }
 
 module.exports = {
     registerUser,
